@@ -10,7 +10,7 @@ const UploadResult = ({ preview, result }) => {
             src={preview}
             className="preview-image"
             alt="preview-image"
-            style={{ maxWidth: "300px", height: "auto", boxShadow: `0 0 10px ${borderColour}`, borderRadius: "5px"  }}
+            style={{ maxWidth: "300px", height: "auto", boxShadow: `0 0 10px ${borderColour}`, borderRadius: '6px' }}
             />
         <p> Result: {result && predicted_class}</p>
         <p> Confidence: {result && result.confidence} %</p>

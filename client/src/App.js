@@ -55,33 +55,37 @@ function App() {
     setPreview(null);
     setFile(null);
     setResult(null);
+    setError(null)
 
   };
 
   return (
     <div className="App">
       <header className="App-header">
-
-      <div className='main-section'>
-
-      <Title/>
         
-      {preview ? (
-        <div>
-          <UploadResult 
-            preview={preview}
-            result={result}
-          />
-          <ResetUploadButton handleResetPreview={handleResetPreview} />
-        </div>
-        ) : 
-        <FileUploader onChange={handleFileChange} />
-      }
+      
+        <div className='main-section'>
+          <div className="title-section">
+          <Title />
+          </div>
+          <div className="content-section">
+            {preview ? (
+              <div>
+                <UploadResult 
+                  preview={preview}
+                  result={result}
+                />
+                <ResetUploadButton handleResetPreview={handleResetPreview} />
+              </div>
+              ) : 
+              <FileUploader onChange={handleFileChange} />
+            }
 
-      {error && 
-        <p>{error}</p>
-      }
-      </div>
+            {error && 
+              <p>{error}</p>
+            }
+            </div>
+        </div>
       </header>
     </div>
   );
