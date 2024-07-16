@@ -1,3 +1,3 @@
 # - Work In Progress -
 # Limb Fracture Identifier
-### Full Stack web application allowing users to upload an x-ray image, image is processed by a deep learning model which returns a prediction for the presence of a fracture.
+### This application allows users to upload an x-ray image, which is then processed by a deep learning model. The model analyzes the image and returns a prediction along with a confidence percentage, indicating the likelihood of a fracture being present.
