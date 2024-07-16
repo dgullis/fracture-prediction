@@ -4,8 +4,10 @@ import os
 import fastbook
 from fastai.learner import load_learner
 from fastai.vision.core import PILImage
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -20,7 +22,8 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['POST', 'OPTIONS'])
+@cross_origin() 
 def upload_file():
     # Check if the post request has the file part
     if 'image' not in request.files:
@@ -56,7 +59,21 @@ def upload_file():
     
     else:
         return jsonify({'error': 'Invalid file type or extension'}), 400
+    
+@app.route('/delete', methods=['DELETE'])
+@cross_origin()
+def delete_file():
+    filename = request.args.get('filename')
+    if filename:
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        if os.path.exists(filepath):
+            os.remove(filepath)
+            return jsonify({'message': f'File {filename} deleted successfully'}), 200
+        else:
+            return jsonify({'error': 'File not found'}), 404
+    else:
+        return jsonify({'error': 'Filename parameter missing'}), 400
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
