@@ -8,7 +8,7 @@
 
 ### Summary
 
-This application allows users to upload an x-ray image, which is then processed by a deep learning model. The model analyzes the image and returns a prediction along with a confidence percentage, indicating the likelihood of a fracture being present.
+This application allows users to upload an x-ray image, which is then processed by a self built deep learning model. The model analyses the image and returns a prediction along with a confidence percentage, indicating the likelihood that the limb is fractured or not fractured.
 
 ### Screenshots
 
